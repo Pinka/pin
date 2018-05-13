@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.pins {
+  display: flex;
+  flex-direction: row;
+}
