@@ -1,10 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import registerServiceWorker from './registerServiceWorker';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
 
-injectTapEventPlugin();
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import "./index.css";
+
+const container = document.getElementById("root");
+const root = createRoot(container);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);

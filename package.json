@@ -19,15 +19,35 @@
     "url": "https://github.com/pinka/pin/issues"
   },
   "homepage": "https://pinka.github.io/pin",
-  "keywords": ["audio", "record", "mic"],
+  "keywords": [
+    "audio",
+    "record",
+    "mic"
+  ],
   "author": "mt",
   "license": "MIT",
   "dependencies": {
-    "gh-pages": "^1.1.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4",
-    "react-tap-event-plugin": "^3.0.2",
-    "wavesurfer.js": "^2.0.5"
+    "dexie": "^3.2.2",
+    "dexie-react-hooks": "^1.1.1",
+    "gh-pages": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "wavesurfer.js": "^6.2.0"
+  },
+  "eslintConfig": {
+    "extends": ["react-app"]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

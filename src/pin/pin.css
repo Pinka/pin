@@ -3,34 +3,11 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    /* padding: 2vw; */
-    background-color: bisque
 }
 
 .pin .pin-button {
-    background-color: brown;
+    background-color: rgb(129, 205, 178);
     cursor: pointer;
-    padding: 5px 0;
-}
-
-.pin .pin-record {
-    position: relative;
-}
-
-.pin .record-remove {
-    width: 48px;
-    height: 14px;
-    background-color: burlywood;
-    display: block;
-    position: absolute;
-    right: 0;
-    display: none;
-    cursor: pointer;
-    font-size: 0.55rem;
-    text-transform: uppercase;
-    z-index: 100;
-}
-
-.pin .pin-record:hover .record-remove {
-    display: block;
+    padding: 0.5rem;
+    text-align: center;
 }

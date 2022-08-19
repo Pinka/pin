@@ -1,9 +1,7 @@
-.App {
-  text-align: center;
-}
 
-.App-intro {
+.app-header {
   font-size: large;
+  text-align: center;
 }
 
 .pins {

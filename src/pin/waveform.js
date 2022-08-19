@@ -1,57 +1,54 @@
-import React, { Component }
-    from 'react';
-import WaveSurfer from 'wavesurfer.js';
+import React, { useEffect, useRef } from "react";
+import WaveSurfer from "wavesurfer.js";
+import SpectrogramPlugin from "wavesurfer.js/src/plugin/spectrogram";
 
-class Waveform extends Component {
-    constructor(props) {
-        super(props);
+const Waveform = (props) => {
+  const containerRef = useRef();
+  const spectrogramRef = useRef();
+  const wavesurferRef = useRef();
 
-        this.play = this.play.bind(this);
-        this.reset = this.reset.bind(this);
-        this.redraw = this.redraw.bind(this);
+  useEffect(() => {
+    const wavesurfer = WaveSurfer.create({
+      container: containerRef.current,
+      height: 64,
+      interact: false,
+      responsive: true,
+      hideScrollbar: true,
+      plugins: [
+        SpectrogramPlugin.create({
+          wavesurfer: wavesurferRef.current,
+          container: spectrogramRef.current,
+          height: 64,
+        }),
+      ],
+    });
 
-        this.wavesurfer = null;
-
-        this.id = this.props.id || '_' + new Date().getTime();
-        this.height = this.props.height || 64;
-
-    }
-    componentDidMount() {
-
-        this.wavesurfer = WaveSurfer.create({
-            container: '#' + this.id,
-            height: this.height,
-            interact: false
-        });
-
-        if(this.props.audio instanceof Blob) {
-            this.wavesurfer.loadBlob(this.props.audio);
-        }
-        else {
-            this.wavesurfer.load(this.props.audio);
-        }
-
-        this.wavesurfer.on('finish', this.reset);
-    }
-    componentWillReceiveProps() {
-        this.redraw();
+    if (props.audio instanceof Blob) {
+      wavesurfer.loadBlob(props.audio);
+    } else {
+      wavesurfer.load(props.audio);
     }
 
-    render() {
-        return (
-            <div id={this.id} onTouchTap={this.play}></div>
-        );
-    }
-    play() {
-        this.wavesurfer.play(0);
-    }
-    reset() {
-        this.wavesurfer.seekTo(0);
-    }
-    redraw() {
-        this.wavesurfer.drawer.containerWidth = this.wavesurfer.drawer.container.clientWidth;
-        this.wavesurfer.drawBuffer();
-    }
-}
+    wavesurfer.on("ready", () => {
+      wavesurferRef.current = wavesurfer;
+    });
+
+    wavesurfer.on("finish", () => wavesurfer.seekTo(0));
+
+    return () => {
+      wavesurfer.destroy();
+    };
+  }, []);
+
+  return (
+    <>
+      <div
+        ref={containerRef}
+        onClick={() => wavesurferRef.current.play(0)}
+      ></div>
+      <div ref={spectrogramRef}></div>
+    </>
+  );
+};
 
 export default Waveform;

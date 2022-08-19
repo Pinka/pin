@@ -39,7 +39,7 @@ class Spectrum extends Component {
             //https://developer.mozilla.org/en-US/docs/Web/API/OfflineAudioContext/oncomplete
             var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             var analyser = audioCtx.createAnalyser();
-            var source = audioCtx.createBufferSource();
+            // var source = audioCtx.createBufferSource();
 
             var onFileDone = function (e) {
 
@@ -142,7 +142,7 @@ class Spectrum extends Component {
             // var channels = analyser.numberOfChannels;
             // var frameCount = analyser.sampleRate * 2.0;
             // var data = buffer.getChannelData(0);
-            var samplesInPixel = parseInt(data.length / WIDTH);
+            var samplesInPixel = parseInt(data.length / WIDTH, 10);
             var pixelSamples = [];
             var x = 0;
             var barHeight;
@@ -150,13 +150,13 @@ class Spectrum extends Component {
             // data color
             canvasCtx.fillStyle = color;
 
-            var max = (max, current) => {
-                return max > current ? max : current;
-            };
+            // var max = (max, current) => {
+            //     return max > current ? max : current;
+            // };
 
-            var min = (min, current) => {
-                return min < current ? min : current;
-            };
+            // var min = (min, current) => {
+            //     return min < current ? min : current;
+            // };
 
             var j = 0;
             for (var i = 0; i < data.length; i++) {
